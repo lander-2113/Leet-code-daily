@@ -1,0 +1,82 @@
+Given: 	nums (int array)
+	n distinct numbers in the range[0, n]
+
+Task::	return the only number in the range that is missing from the array.
+
+s1 sort the array
+s2 declare i, n as 0 and lenght of array respectively
+s3: run loop from i to n
+	if the i is not equal to the indexed value in the nums:
+		then return i
+s5: return n
+
+time nlonn + n
+
+space O(1)
+
+
+Python code:
+
+class Solution:
+    def missingNumber(self, nums: List[int]) -> int:
+        
+        nums.sort()
+        
+        i, n = 0, len(nums)
+        
+        for i in range(0, n):
+            if i != nums[i]:
+                return i
+        
+        return n
+
+
+algorithtm 2:
+
+s1 start:
+s2 fidn the sum of first n natural numbers, using n*(n+1)
+s3 find the sum of  numbers of the array
+s4 find the differenc of the two sume
+s5 return the difference.
+s6 end.
+
+code
+
+class Solution:
+    def missingNumber(self, nums: List[int]) -> int:
+        n = len(nums)
+        total = (n * (n + 1))//2
+        return total - sum(nums)
+
+
+algorithm 3
+bitwise xor solution.
+
+so there is expected XOR that should come when 0 to n numbers are xored.
+
+and there is number that should come when xored the digits of the array.
+
+then xor both of these numbers and return it.
+
+that is the answer.
+
+code.
+
+class Solution:
+    def missingNumber(self, nums: List[int]) -> int:
+        n = len(nums)
+        
+        actualXor = n
+        expectedXor = 0
+        
+        for i in range(n):
+            actualXor ^= nums[i]
+            expectedXor ^= i
+        
+        return actualXor ^ expectedXor
+
+
+
+        
+
+
