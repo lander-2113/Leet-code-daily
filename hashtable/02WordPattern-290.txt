@@ -1,0 +1,92 @@
+given:	pattern()
+	s(string)
+
+task:
+	find if s follows the same pattern
+
+Note: follow means full match,
+there is a one-to-one correspondence.
+
+meaning there is pattern of all differnet characters, then 
+
+so the string has some number of strings 
+
+separated by space, as there are characters, 
+in the pattern.
+
+each string in the sentence represent a s charaater in the pattern.
+
+
+now if any of the character repeates at a certain index, then that sentence,
+needs to do the same.
+
+but what is the use of hash map?
+
+algorithm:
+s1: first make a list of space separated strings from the array.
+s2: Then check if the size of the newlyformed string array(v) is not equal to
+      equal to the size of the pattern string
+	if not end
+s3: declare one unordered map, and a set 
+
+s4 for i  = 0; i< size of the pattern; i++
+	if pattern[i] is in m :
+		if m[pattern[i]] != v[i]:
+			return false
+	else:
+		if st.count(v[i] > 0:
+			return false
+	m[pattern[i]] = v[i]
+	st.insert(v[i])
+
+s5 return true
+s6: end
+
+python code:
+
+"""
+
+"""
+class Solution:
+    def wordPattern(self, pattern: str, s: str) -> bool:        
+        
+        i = 0
+        n = len(s)
+        v = []
+        temp = ''
+        while i < len(s):
+            if s[i] == ' ':
+                v.append(temp)
+                temp = ''
+            else:
+                temp += s[i]
+            i += 1
+        v.append(temp)
+        
+        if len(pattern) != len(v):
+            return False
+        
+        visited = set()
+        
+        m = {}
+        i = 0
+        while i < len(pattern):
+            if pattern[i] in m:
+                if m[pattern[i]] != v[i]:
+                    return False
+            else:
+                if v[i] in visited:
+                    return False
+                
+                m[pattern[i]] = v[i]
+                visited.add(v[i])
+            i += 1
+        return True
+
+
+Test Case:
+"abba"
+"dog cat cat dog"
+
+
+
