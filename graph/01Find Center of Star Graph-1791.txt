@@ -1,0 +1,72 @@
+Setting:	star(undirected) graph
+        has n nodes.
+        labeled from 1 to n.
+
+A star graph where there is one center node
+and exactly n - 1 edges that connect the
+center node with every other node.
+
+given:  edges(2D integer array) where each
+        each edges[i] = [ui, vi] indicates
+        that there is an edge between the nodes
+        ui and vi.
+
+task:   Return the center of the given
+        star graph.
+
+how do I find the node that connects with all?
+
+is all the node have only one connection except
+the center node?
+
+which only have more one connection?
+
+approach1:
+just run a loop from 0 to number of edges
+put a condition of i + 1 < edge length
+
+check if the current edge vertex are in the
+next edge, i.e i + 1 edge
+
+and return that vertex.
+
+code:
+class Solution:
+    def findCenter(self, edges: List[List[int]]) -> int:
+
+
+        nedges = len(edges)
+
+        i = 0
+        t = -1
+        while i + 1 < nedges :
+
+            v = 0
+            while v < 3:
+                if edges[i][v] in edges[i + 1]:
+                    return edges[i][v]
+                v += 1
+
+            i += 1
+
+        return -1
+
+complexity:
+O(1) as the outer loop only runs only one time.
+and the inner loop runs only two time.
+
+approach2
+Since, it is a guarantee that there is a common vertex
+in every edge.
+
+then we can just compare the vertex.
+and return the one that matches.
+
+code:
+class Solution:
+    def findCenter(self, edges: List[List[int]]) -> int:
+
+
+        if edges[0][0] == edges[1][0] or edges[0][0] == edges[1][1]:
+            return edges[0][0]
+        return edges[0][1]
