@@ -2,6 +2,15 @@
 This repository is my documentation of doing daily leet code problems.
 
 I will do them like this: (first only easy problems)
-	- First the problem name and number on leetcode.
-	- Then possible soluitons
-	- then code of the approaches.
+
+-First the problem name and number on leetcode.
+
+-Then possible soluitons.
+
+-then code of the approaches.
+do at leat 200 on every ds
+
+
+Then do medium problems.
+
+Then do medium to hard.
