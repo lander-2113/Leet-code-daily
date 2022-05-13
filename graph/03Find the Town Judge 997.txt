@@ -1,0 +1,99 @@
+given:	n(people) 1 to n
+	one is a town judge.
+
+if town judge exists, 
+	the judge trusts nobody.
+	everybody trusts the town judge.
+	there is exactly one person that satisfies properties 1 and 2.
+
+
+Given:	trust(array)
+	where trust[i] = [ai, bi]
+	representing that
+	the person labeled ai trusts the person
+	labeled bi.
+
+
+return:
+	the label of the town judge 
+
+quesiton?
+how do I use graph to solve this problem?
+algorithm:
+
+s1 start
+
+s2 make a graph out of this trust array.
+     as this resembles the edges list for a graph.
+
+s3 check if the length of graph is empty 
+	if yes:
+		return 1 if n is 1
+		otherwise
+		return -1
+	got to s9
+
+s4 find the vertext whose adj list is empty.
+
+s6 if no such vertex is found, return -1
+	and got to s9
+
+s7 after that if that vertex from s6 is not in at least one adj list
+	of any vertex, except itself then return -1 and got to s9
+
+s8 return that that vertx from s6 after s7
+
+s9 end the program.
+
+code:
+
+"""
+
+"""
+class Solution:
+    def findJudge(self, n: int, trust: List[List[int]]) -> int:
+        
+        return self.buildGraph(trust, n)
+    
+    def buildGraph(self, edges, n):
+        
+        graph = {}
+        
+        for edge in edges:# O(n)
+            
+            a, b = edge
+            if a not in graph:
+                graph[a] = []
+            if b not in graph:
+                graph[b] = []
+            
+            graph[a].append(b)
+        
+        # find the vertext that has list empyt
+        # check if that v exist in every other list then return true
+        # otherwise false.
+        pj = 0
+        if len(graph) == 0:
+            if  n == 1:
+                return 1
+            return -1
+        
+        for key, value in graph.items(): # O(n)
+            if len(value) == 0:
+                pj = key
+                print("r1", str(pj))
+                break
+                
+        if pj == 0:return -1
+        
+        for key, value in graph.items():#(n^2)
+            if key != pj:
+                if pj not in value:
+                    return -1
+        
+        return pj
+
+analysis
+:time roughly O(n^2)
+:space roughly (n)
+
