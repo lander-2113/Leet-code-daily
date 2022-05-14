@@ -1,0 +1,39 @@
+given:	root(of a binary tree)
+
+task:	invert the tree, and  return it's root
+
+what is invert?
+
+replace root on the same level of the tree.
+
+replace right child with left child.
+
+replace node not just the value.
+
+approach.
+traverse: ::: recusively traverse the tree, after visiting left and right node or tree,
+	of the root node, swithc right and left tree,
+	in the unwinding phase.
+
+and just return root.
+
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+        
+        if root is not None:
+            self.invertTree(root.left)
+            self.invertTree(root.right)
+            
+            temp = root.left
+            
+            root.left = root.right
+            root.right = temp
+            return root
+            
